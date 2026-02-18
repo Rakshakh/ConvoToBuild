@@ -1,8 +1,18 @@
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+let openai: OpenAI | null = null
+
+function getOpenAIClient(): OpenAI {
+  if (!openai && process.env.OPENAI_API_KEY) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  if (!openai) {
+    throw new Error('OpenAI client not initialized. Please set OPENAI_API_KEY environment variable.')
+  }
+  return openai
+}
 
 export interface AIMessage {
   role: 'system' | 'user' | 'assistant'
@@ -26,7 +36,8 @@ export interface AppSpecification {
 export class AIService {
   async chat(messages: AIMessage[]): Promise<string> {
     try {
-      const response = await openai.chat.completions.create({
+      const client = getOpenAIClient()
+      const response = await client.chat.completions.create({
         model: 'gpt-4',
         messages: messages,
         temperature: 0.7,

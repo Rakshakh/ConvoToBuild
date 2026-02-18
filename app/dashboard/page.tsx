@@ -218,7 +218,7 @@ export default function Dashboard() {
           </h3>
           <p className="text-blue-800">
             Want to modify any of your apps? Just message our WhatsApp bot with your request and
-            we'll update it automatically!
+            we&apos;ll update it automatically!
           </p>
         </div>
       </main>
