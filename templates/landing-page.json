@@ -1,0 +1,32 @@
+{
+  "name": "basic-landing-page",
+  "type": "landing-page",
+  "description": "A basic landing page template with hero section, features, and CTA",
+  "structure": {
+    "pages": [
+      {
+        "path": "app/page.tsx",
+        "template": "landing-page-home"
+      }
+    ],
+    "components": [],
+    "styles": [
+      {
+        "path": "app/globals.css",
+        "template": "base-styles"
+      }
+    ]
+  },
+  "defaults": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#8B5CF6"
+    },
+    "sections": [
+      "hero",
+      "features",
+      "testimonials",
+      "cta"
+    ]
+  }
+}
